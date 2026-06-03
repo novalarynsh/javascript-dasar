@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JavaScript Dasar</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <h1>HTML + <em>JavaScript</em> Dasar</h1>
+    <p>// client-side scripting · DOM manipulation · event handling</p>
+  </header>
+
+  <!-- DEMO 1: MANIPULASI DOM -->
+  <div class="card">
+    <div class="card-label">Demo 01</div>
+    <h2>Manipulasi DOM</h2>
+    <p class="sub">
+      Akses elemen HTML dengan <code>getElementById()</code>, lalu ubah isinya lewat <code>innerText</code>. Ini adalah inti dari <em>client-side scripting</em>.
+    </p>
+    <div class="concepts">
+      <span class="tag">getElementById</span>
+      <span class="tag">innerText</span>
+      <span class="tag">if / else</span>
+    </div>
+    <div class="row">
+      <input type="text" id="inp1" placeholder="Ketik nama kamu..." style="flex:1" />
+      <button class="btn btn-primary" onclick="sapa()">Sapa!</button>
+      <button class="btn btn-ghost" onclick="resetSapa()">Reset</button>
+    </div>
+    <div class="output" id="out1">Hasil akan muncul di sini...</div>
+    <details>
+      <summary>▸ Lihat kode JavaScript</summary>
+<pre>function sapa() {
+  // Ambil nilai input dari DOM
+  const nama = document.getElementById('inp1').value;
+  const output = document.getElementById('out1');
+
+  // Event handling + kondisi if/else
+  if (nama.trim() === '') {
+    output.innerText = 'Masukkan nama dulu!';
+  } else {
+    output.innerText = 'Halo, ' + nama + '! Selamat belajar!';
+  }
+}</pre>
+    </details>
+  </div>
+
+  <!-- DEMO 2: EVENT HANDLING - COUNTER -->
+  <div class="card">
+    <div class="card-label">Demo 02</div>
+    <h2>Event Handling — Counter</h2>
+    <p class="sub">
+      Setiap klik tombol memicu <em>event handler</em> yang memodifikasi variabel global, lalu memperbarui tampilan DOM secara real-time.
+    </p>
+    <div class="concepts">
+      <span class="tag">onclick event</span>
+      <span class="tag">variabel global</span>
+      <span class="tag">DOM update</span>
+    </div>
+    <div class="counter-num" id="counter">0</div>
+    <div class="counter-btns">
+      <button class="btn btn-ghost" onclick="ubahCounter(-1)">− 1</button>
+      <button class="btn btn-ghost" onclick="ubahCounter(0)">Reset</button>
+      <button class="btn btn-primary" onclick="ubahCounter(1)">+ 1</button>
+    </div>
+    <details>
+      <summary>▸ Lihat kode JavaScript</summary>
+<pre>// Variabel global yang menyimpan state
+let angka = 0;
+
+function ubahCounter(delta) {
+  // Logika update nilai
+  if (delta === 0) { angka = 0; }
+  else { angka += delta; }
+
+  // Manipulasi DOM: tampilkan nilai terbaru
+  document.getElementById('counter').innerText = angka;
+}</pre>
+    </details>
+  </div>
+
+  <!-- DEMO 3: DOM DINAMIS - TO-DO LIST -->
+  <div class="card">
+    <div class="card-label">Demo 03</div>
+    <h2>Manipulasi DOM Dinamis — To-Do List</h2>
+    <p class="sub">
+      Buat dan hapus elemen HTML secara dinamis menggunakan <code>createElement()</code> dan <code>appendChild()</code>. Event <code>keydown</code> mendeteksi tombol Enter.
+    </p>
+    <div class="concepts">
+      <span class="tag">createElement</span>
+      <span class="tag">appendChild</span>
+      <span class="tag">removeChild</span>
+      <span class="tag">keydown event</span>
+    </div>
+    <div class="todo-row">
+      <input type="text" id="todo-inp" placeholder="Tambah tugas baru..." onkeydown="if(event.key==='Enter') tambahTodo()" />
+      <button class="btn btn-primary" onclick="tambahTodo()">Tambah</button>
+    </div>
+    <ul id="todo-list"></ul>
+    <p id="todo-empty">// Belum ada tugas — tambahkan sesuatu!</p>
+    <details>
+      <summary>▸ Lihat kode JavaScript</summary>
+<pre>function tambahTodo() {
+  const teks = document.getElementById('todo-inp').value.trim();
+  if (!teks) return;
+
+  // Buat elemen baru secara dinamis
+  const li = document.createElement('li');
+  const span = document.createElement('span');
+  span.innerText = teks;
+
+  const tombolHapus = document.createElement('button');
+  tombolHapus.innerText = '✕';
+  tombolHapus.onclick = function() {
+    // Hapus elemen dari DOM
+    document.getElementById('todo-list').removeChild(li);
+  };
+
+  // Sisipkan ke dalam DOM
+  li.appendChild(span);
+  li.appendChild(tombolHapus);
+  document.getElementById('todo-list').appendChild(li);
+}</pre>
+    </details>
+  </div>
+
+  <footer>&lt;/html&gt; — belajar JavaScript satu langkah sekaligus</footer>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
