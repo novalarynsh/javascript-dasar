@@ -165,3 +165,5 @@ function tambahTodo() {
 Project ini membuktikan bahwa dengan **tiga file dasar** (HTML, CSS, JavaScript), kita sudah bisa membangun halaman web yang interaktif dan responsif terhadap aksi pengguna — tanpa library tambahan, tanpa framework, hanya dengan kemampuan bawaan browser.
 
 > *"JavaScript adalah jembatan antara halaman statis dan pengalaman yang hidup."*
+
+[Link PPT](https://canva.link/m1b5rspcp8rrg43)
